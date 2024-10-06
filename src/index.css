@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+
+.tag {
+  @apply bg-white dark:bg-dark-elements px-7 py-1 rounded-sm shadow-md;
+}
+
+@tailwind utilities;
