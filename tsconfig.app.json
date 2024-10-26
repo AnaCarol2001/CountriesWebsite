@@ -26,7 +26,8 @@
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@hooks/*": ["hooks/*"],
-      "@contexts/*": ["contexts/*"]
+      "@contexts/*": ["contexts/*"],
+      "@util/*": ["util/*"]
     }
   },
   "include": ["src"]

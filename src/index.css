@@ -5,4 +5,16 @@
   @apply bg-white dark:bg-dark-elements px-7 py-1 rounded-sm shadow-md;
 }
 
+.grid-rows-auto {
+  grid-auto-rows: minmax(auto, 160px) auto auto;
+}
+
+.listbox-focus {
+  @apply bg-gray-200 dark:bg-gray-600;
+}
+
+.listbox-hover {
+  @apply hover:bg-gray-200 dark:hover:bg-gray-600;
+}
+
 @tailwind utilities;
