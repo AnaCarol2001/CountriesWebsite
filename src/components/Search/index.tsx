@@ -16,7 +16,7 @@ export default function Search() {
   const [activeLiID, setActiveLiID] = useState<string | null>(null);
 
   const searchValue = useDebounce(inputValue);
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["countries", "searchField", searchValue],
     queryFn: () => fetchData<Country[]>(`name/${searchValue}?fields=name`),
     staleTime: Infinity,
@@ -87,6 +87,7 @@ export default function Search() {
           activeLiID={activeLiID}
           data={data}
           setActiveLiID={setActiveLiID}
+          isLoading={isLoading || !searchValue}
         />
       )}
     </div>

@@ -7,6 +7,7 @@ type ListBoxType = {
   activeLiID: string | null;
   setActiveLiID: (v: string | null) => void;
   data: Country[] | undefined;
+  isLoading: boolean;
 };
 
 export type ListBoxRefMethodsType = {
@@ -20,7 +21,7 @@ const ListBox = forwardRef<ListBoxRefMethodsType, ListBoxType>(function (
   props,
   ref
 ) {
-  const { activeLiID, data, setActiveLiID } = props;
+  const { activeLiID, data, setActiveLiID, isLoading } = props;
   const ulRef = useRef<HTMLUListElement>(null);
 
   useImperativeHandle(
@@ -56,6 +57,18 @@ const ListBox = forwardRef<ListBoxRefMethodsType, ListBoxType>(function (
     },
     [activeLiID, setActiveLiID]
   );
+
+  if (isLoading) {
+    return (
+      <ul
+        role="listbox"
+        aria-label="countries"
+        className="absolute w-full top-16 max-h-32 overflow-y-auto bg-white dark:bg-dark-elements text-xs sm:text-sm rounded-md overflow-hidden"
+      >
+        <li className="mx-4 py-1.5 ">Loading...</li>
+      </ul>
+    );
+  }
 
   return (
     <ul
