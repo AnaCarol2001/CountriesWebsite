@@ -27,7 +27,10 @@ export default function Search() {
   const handleInputChange = (value: string) => {
     setInputValue(value);
     if (!isListBoxOpen && value.length > 0) return seIstListBoxOpen(true);
-    if (value.length === 0) seIstListBoxOpen(false);
+    if (value.length === 0) {
+      seIstListBoxOpen(false);
+      if (searchParams.get("search")) return setSearchParams({});
+    }
   };
 
   const handleKeyEvents = (e: React.KeyboardEvent) => {

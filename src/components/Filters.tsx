@@ -1,5 +1,4 @@
 import Search from "@components/Search";
-// import SearchBar from "@components/SearchBar/SearchBar";
 import { useSearchParams } from "react-router-dom";
 
 export default function Filters() {
