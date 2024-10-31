@@ -26,4 +26,5 @@ Users should be able to:
 - [Como gerenciar estados de paginação usando o useQuery](https://youtu.be/7zb1-pR3Jxk?si=GpE4dltcni9ct0XO)
 - [Você não deveria usar estados do React pra TUDO! (URL State)](https://youtu.be/YJmcyvrJf20?si=dPMwjPA_TFr3Y9a5)
 - [Accessible site search with combobox suggestions](https://www.makethingsaccessible.com/guides/accessible-site-search-with-combobox-suggestions/)
-
+- [How to Create Infinite Scrolling in React Using the Intersection Observer API](https://www.freecodecamp.org/news/infinite-scrolling-in-react/)
+- [useLocation - React Router Dom](https://reactrouter.com/en/main/hooks/use-location)
