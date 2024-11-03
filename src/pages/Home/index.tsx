@@ -1,8 +1,9 @@
-import CardsList from "@components/CardsList";
-import Filters from "@components/Filters";
+import CountriesList from "@pages/Home/CountriesList";
 import Heading from "@components/ui/Heading";
 import { HeadingContext } from "@contexts/headingContext";
-import useCountries from "@hooks/useCountries";
+import useCountries from "@pages/Home/useCountries";
+import SearchBar from "@pages/Home/SearchBar";
+import FilterByRegion from "@pages/Home/FilterByRegion";
 
 export default function Home() {
   const { data, isLoading } = useCountries();
@@ -13,11 +14,14 @@ export default function Home() {
         <main className="mx-4 md:mx-20">
           <Heading className="sr-only">Where in the world?</Heading>
 
-          <Filters />
+          <div className="w-full flex flex-col md:flex-row md:justify-between my-6  md:my-11 gap-10">
+            <SearchBar />
+            <FilterByRegion />
+          </div>
           {isLoading ? (
             <p>Loading...</p>
           ) : data ? (
-            <CardsList data={data} />
+            <CountriesList data={data} />
           ) : (
             <p>Not found!</p>
           )}

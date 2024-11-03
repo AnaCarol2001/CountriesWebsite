@@ -1,5 +1,5 @@
-import InputSearch from "@components/Search/Input";
-import ListBox, { ListBoxRefMethodsType } from "@components/Search/ListBox";
+import InputSearch from "@pages/Home/SearchBar/Input";
+import ListBox, { ListBoxRefMethodsType } from "@pages/Home/SearchBar/ListBox";
 import useDebounce from "@hooks/useDebounce";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "@util/fetchData";
@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Country } from "types";
 
-export default function Search() {
+export default function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();
   const inputInitialValue = searchParams.get("search") || "";
   const [inputValue, setInputValue] = useState(inputInitialValue);
@@ -26,10 +26,14 @@ export default function Search() {
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
-    if (!isListBoxOpen && value.length > 0) return seIstListBoxOpen(true);
-    if (value.length === 0) {
+    if (!isListBoxOpen && value) return seIstListBoxOpen(true);
+    if (!value) {
       seIstListBoxOpen(false);
-      if (searchParams.get("search")) return setSearchParams({});
+      if (searchParams.get("search")) {
+        searchParams.delete("search");
+        setSearchParams(searchParams);
+        return;
+      }
     }
   };
 

@@ -3,7 +3,7 @@ import DetailItem from "@components/DetailItem";
 import Heading from "@components/ui/Heading";
 import Section from "@components/ui/Section";
 import { HeadingContext } from "@contexts/headingContext";
-import useCountry from "@hooks/useCountry";
+import useCountry from "@pages/Country/useCountry";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Country() {

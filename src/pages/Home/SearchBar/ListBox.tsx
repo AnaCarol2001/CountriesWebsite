@@ -78,8 +78,8 @@ const ListBox = forwardRef<ListBoxRefMethodsType, ListBoxType>(function (
       aria-label="countries"
       className="absolute w-full top-16 max-h-32 overflow-y-auto bg-white dark:bg-dark-elements text-xs sm:text-sm rounded-md overflow-hidden"
     >
-      {data && data?.length > 0 ? (
-        data?.map((obj) => {
+      {data ? (
+        data.map((obj) => {
           const countryName = obj.name.official;
           const id = countryName.replace(/\W/g, "");
           return (
