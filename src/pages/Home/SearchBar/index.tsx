@@ -16,12 +16,11 @@ export default function SearchBar() {
   const [activeLiID, setActiveLiID] = useState<string | null>(null);
 
   const searchValue = useDebounce(inputValue);
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["countries", "searchField", searchValue],
     queryFn: () => fetchData<Country[]>(`name/${searchValue}?fields=name`),
     staleTime: Infinity,
     enabled: !!searchValue,
-    retry: false,
   });
 
   const handleInputChange = (value: string) => {
@@ -56,7 +55,7 @@ export default function SearchBar() {
       }
       case "Space":
       case "Enter": {
-        if (!activeLiID && isSuccess) {
+        if (!activeLiID && data && data?.length > 0) {
           setSearchParams({ search: inputValue });
           seIstListBoxOpen(false);
           return;
