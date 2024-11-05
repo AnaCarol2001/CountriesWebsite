@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { client } from "./queryClient";
-import { loader as countryLoader } from "@pages/Country/useCountry";
+import { loader as countryLoader } from "@pages/Country/countryLoader";
 import PageLayout from "@components/ui/PageLayout";
 import Home from "@pages/Home";
 import Country from "@pages/Country";

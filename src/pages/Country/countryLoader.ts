@@ -1,40 +1,41 @@
 import { fetchData } from "@util/fetchData";
 import { Country, CountryName } from "types";
 import { QueryClient, queryOptions } from "@tanstack/react-query";
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { defer, LoaderFunctionArgs } from "react-router-dom";
 
 const COUNTRY_FIELDS =
   "fields=name,population,region,subregion,capital,flags,tld,currencies,languages,borders";
 
-export default function useCountry() {
-  const data = useLoaderData() as Awaited<
-    ReturnType<ReturnType<typeof loader>>
-  >;
-
-  return data;
-}
-
 export function loader(queryClient: QueryClient) {
-  return async ({ params }: LoaderFunctionArgs) => {
+  return ({ params }: LoaderFunctionArgs) => {
     const countryId = params.countryId;
 
     if (!countryId) throw new Error("No country id provided.");
 
-    const [country] = await queryClient.ensureQueryData(
-      getCountryDetails(countryId)
-    );
+    const countryDetails = getAllCountryDetails(countryId, queryClient);
 
-    if (!country.borders || country?.borders?.length === 0)
-      return { ...country, bordersFullName: [] };
+    return defer({ country: countryDetails });
+  };
+}
 
-    const bordersNames = await queryClient.ensureQueryData(
-      getCountryBorders(countryId, country.borders.join(","))
-    );
+async function getAllCountryDetails(
+  countryId: string,
+  queryClient: QueryClient
+) {
+  const [country] = await queryClient.ensureQueryData(
+    getCountryDetails(countryId)
+  );
 
-    return {
-      ...country,
-      bordersFullName: bordersNames,
-    };
+  if (!country.borders || country?.borders?.length === 0)
+    return { ...country, bordersFullName: [] };
+
+  const bordersNames = await queryClient.ensureQueryData(
+    getCountryBorders(countryId, country.borders.join(","))
+  );
+
+  return {
+    ...country,
+    bordersFullName: bordersNames,
   };
 }
 

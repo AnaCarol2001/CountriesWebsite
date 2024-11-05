@@ -28,3 +28,4 @@ Users should be able to:
 - [Accessible site search with combobox suggestions](https://www.makethingsaccessible.com/guides/accessible-site-search-with-combobox-suggestions/)
 - [How to Create Infinite Scrolling in React Using the Intersection Observer API](https://www.freecodecamp.org/news/infinite-scrolling-in-react/)
 - [useLocation - React Router Dom](https://reactrouter.com/en/main/hooks/use-location)
+- [How to write the correct type for useLoaderData()? (Typescript)](https://github.com/remix-run/react-router/discussions/9792)
