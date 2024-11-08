@@ -65,7 +65,13 @@ const ListBox = forwardRef<ListBoxRefMethodsType, ListBoxType>(function (
         aria-label="countries"
         className="absolute w-full top-16 max-h-32 overflow-y-auto bg-white dark:bg-dark-elements text-xs sm:text-sm rounded-md overflow-hidden"
       >
-        <li className="mx-4 py-1.5 ">Loading...</li>
+        <li className="mx-4 py-1.5 ">
+          <span className="sr-only">Loading...</span>
+          <div aria-hidden="true" className="relative">
+            <div className="circle border-dark dark:border-white opacity-50"></div>
+            <div className="circle absolute inset-0 border-transparent border-r-dark border-t-dark dark:border-r-white dark:border-t-white  animate-spin"></div>
+          </div>
+        </li>
       </ul>
     );
   }

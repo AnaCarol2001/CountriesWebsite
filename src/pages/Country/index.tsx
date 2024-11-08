@@ -24,7 +24,7 @@ export default function Country() {
               <LeftArrow /> Back
             </button>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<CountrySkeleton />}>
             <Await resolve={country} errorElement={<p>Error</p>}>
               {(country: CountryType) => (
                 <article className="grid gap-11 md:grid-cols-2 lg:items-center xl:gap-36">
@@ -112,3 +112,34 @@ export default function Country() {
     </>
   );
 }
+
+const CountrySkeleton = () => {
+  return (
+    <div className="grid gap-11 md:grid-cols-2 lg:items-center xl:gap-36">
+      <div className="skeleton w-full aspect-[4/3] max-w-[560px]"></div>
+      <div>
+        <div className="skeleton h-5 sm:h-7 w-full mb-3 md:mb-7"></div>
+        <div>
+          <div className="grid gap-11 mb-10 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+            <div className="space-y-2">
+              <div className="skeleton h-3 w-3/4"></div>
+              <div className="skeleton h-3 w-3/5"></div>
+              <div className="skeleton h-3 w-1/2"></div>
+              <div className="skeleton h-3 w-3/4"></div>
+              <div className="skeleton h-3 w-2/3"></div>
+            </div>
+            <div className="space-y-2">
+              <div className="skeleton h-3 w-3/5"></div>
+              <div className="skeleton h-3 w-3/4"></div>
+              <div className="skeleton h-3 w-1/2"></div>
+            </div>
+          </div>
+          <div className="skeleton h-6 w-3/4">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

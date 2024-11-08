@@ -17,4 +17,12 @@
   @apply hover:bg-gray-200 dark:hover:bg-gray-600;
 }
 
+.circle {
+  @apply w-5 aspect-square border-[3px] border-solid rounded-full;
+}
+
+.skeleton {
+  @apply bg-slate-400 animate-pulse;
+}
+
 @tailwind utilities;

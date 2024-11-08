@@ -1,4 +1,6 @@
-import CountriesList from "@pages/Home/CountriesList";
+import CountriesList, {
+  CountriesListSkeleton,
+} from "@pages/Home/CountriesList";
 import Heading from "@components/ui/Heading";
 import { HeadingContext } from "@contexts/headingContext";
 import useCountries from "@pages/Home/useCountries";
@@ -19,7 +21,7 @@ export default function Home() {
             <FilterByRegion />
           </div>
           {isLoading ? (
-            <p>Loading...</p>
+            <CountriesListSkeleton />
           ) : data ? (
             <CountriesList data={data} />
           ) : (
