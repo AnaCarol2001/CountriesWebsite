@@ -24,89 +24,96 @@ export default function Country() {
               <LeftArrow /> Back
             </button>
           </div>
-          <Suspense fallback={<CountrySkeleton />}>
-            <Await resolve={country} errorElement={<p>Error</p>}>
-              {(country: CountryType) => (
-                <article className="grid gap-11 md:grid-cols-2 lg:items-center xl:gap-36">
-                  <img
-                    src={country.flags.png}
-                    alt={country.flags.alt}
-                    className="w-full aspect-[4/3] max-w-[560px] object-contain"
-                  />
-                  <div>
-                    <Heading className="font-extrabold text-xl sm:text-3xl mb-3 md:mb-7">
-                      {country.name.official}
-                    </Heading>
-                    <Section as="div">
-                      <div className="grid gap-11 mb-10 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-                        <div>
-                          <DetailItem
-                            name="Native"
-                            value={Object.values(country.name.nativeName)
-                              .map((i) => i.common)
-                              .join(", ")}
-                          />
-                          <DetailItem
-                            name="Population"
-                            value={country.population.toLocaleString()}
-                          />
-                          <DetailItem name="Region" value={country.region} />
-                          <DetailItem
-                            name="Sub Region"
-                            value={country.subregion}
-                          />
-                          <DetailItem
-                            name="Capital"
-                            value={country.capital.join(", ")}
-                          />
+          <article className="grid gap-11 md:grid-cols-2 lg:items-center xl:gap-36">
+            <Suspense fallback={<CountrySkeleton />}>
+              <Await resolve={country} errorElement={<p>Error</p>}>
+                {(country: CountryType) => (
+                  <>
+                    <div className="order-2">
+                      <Heading className="font-extrabold text-xl sm:text-3xl mb-3 md:mb-7">
+                        {country.name.official}
+                      </Heading>
+                      <Section as="div">
+                        <div className="grid gap-11 mb-10 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+                          <div>
+                            <DetailItem
+                              name="Native"
+                              value={Object.values(country.name.nativeName)
+                                .map((i) => i.common)
+                                .join(", ")}
+                            />
+                            <DetailItem
+                              name="Population"
+                              value={country.population.toLocaleString()}
+                            />
+                            <DetailItem name="Region" value={country.region} />
+                            <DetailItem
+                              name="Sub Region"
+                              value={country.subregion}
+                            />
+                            <DetailItem
+                              name="Capital"
+                              value={country.capital.join(", ")}
+                            />
+                          </div>
+                          <div>
+                            <DetailItem
+                              name="Top Level Domain"
+                              value={country.tld.join(", ")}
+                            />
+                            <DetailItem
+                              name="Currencies"
+                              value={Object.values(country.currencies)
+                                .map((i) => i.name)
+                                .join(", ")}
+                            />
+                            <DetailItem
+                              name="Languages"
+                              value={Object.values(country.languages).join(
+                                ", "
+                              )}
+                            />
+                          </div>
                         </div>
-                        <div>
-                          <DetailItem
-                            name="Top Level Domain"
-                            value={country.tld.join(", ")}
-                          />
-                          <DetailItem
-                            name="Currencies"
-                            value={Object.values(country.currencies)
-                              .map((i) => i.name)
-                              .join(", ")}
-                          />
-                          <DetailItem
-                            name="Languages"
-                            value={Object.values(country.languages).join(", ")}
-                          />
-                        </div>
-                      </div>
-                      <div className="flex flex-wrap gap-2 items-center">
-                        <Heading className="font-semibold">
-                          Border Countries:
-                        </Heading>
+                        <div className="flex flex-wrap gap-2 items-center">
+                          <Heading className="font-semibold">
+                            Border Countries:
+                          </Heading>
 
-                        {!country.bordersFullName ||
-                        country?.bordersFullName.length === 0 ? (
-                          <p className="italic">No border country</p>
-                        ) : (
-                          <nav>
-                            <ul className="flex flex-wrap gap-2">
-                              {country.bordersFullName.map((border) => (
-                                <li key={border.name.official} className="tag">
-                                  <Link
-                                    to={`/countries/${border.name.official}`}
+                          {!country.bordersFullName ||
+                          country?.bordersFullName.length === 0 ? (
+                            <p className="italic">No border country</p>
+                          ) : (
+                            <nav>
+                              <ul className="flex flex-wrap gap-2">
+                                {country.bordersFullName.map((border) => (
+                                  <li
+                                    key={border.name.official}
+                                    className="tag"
                                   >
-                                    {border.name.common}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </nav>
-                        )}
-                      </div>
-                    </Section>
-                  </div>
-                </article>
-              )}
-            </Await>
-          </Suspense>
+                                    <Link
+                                      to={`/countries/${border.name.official}`}
+                                    >
+                                      {border.name.common}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </nav>
+                          )}
+                        </div>
+                      </Section>
+                    </div>
+                    <img
+                      src={country.flags.png}
+                      alt={country.flags.alt}
+                      className="w-full aspect-[4/3] max-w-[560px] object-contain order-1"
+                    />
+                  </>
+                )}
+              </Await>
+            </Suspense>
+          </article>
         </main>
       </HeadingContext.Provider>
     </>
@@ -115,10 +122,12 @@ export default function Country() {
 
 const CountrySkeleton = () => {
   return (
-    <div className="grid gap-11 md:grid-cols-2 lg:items-center xl:gap-36">
+    <>
       <div className="skeleton w-full aspect-[4/3] max-w-[560px]"></div>
       <div>
-        <div className="skeleton h-5 sm:h-7 w-full mb-3 md:mb-7"></div>
+        <div className="skeleton h-5 sm:h-7 w-full mb-3 md:mb-7">
+          <Heading className="sr-only">Loading country details</Heading>
+        </div>
         <div>
           <div className="grid gap-11 mb-10 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
             <div className="space-y-2">
@@ -140,6 +149,6 @@ const CountrySkeleton = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
