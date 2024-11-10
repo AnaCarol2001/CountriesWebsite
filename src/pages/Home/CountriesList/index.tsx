@@ -10,7 +10,7 @@ export default function CountriesList({ data }: { data: Country[] }) {
 
   return (
     <Section className="grid place-items-center grid-rows-auto gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-x-16 pb-6 md:pb-11 ">
-      {displayData?.map((country, i) => (
+      {displayData.map((country, i) => (
         <article
           ref={i === displayData.length - 1 ? lastElementRef : undefined}
           data-component="card"
