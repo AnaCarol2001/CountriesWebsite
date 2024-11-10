@@ -40,7 +40,7 @@ export default function FilterByRegion() {
         <button
           type="button"
           onClick={() => handleRegionChange("")}
-          className="md:order-1"
+          className="md:order-1 p-1"
         >
           <span className="sr-only">Clear region filter</span> <X />
         </button>
