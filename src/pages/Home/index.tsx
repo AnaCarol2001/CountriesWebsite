@@ -20,12 +20,21 @@ export default function Home() {
             <SearchBar />
             <FilterByRegion />
           </div>
+          <div role="region" aria-live="polite" className="sr-only">
+            <Heading>
+              {isLoading
+                ? "Loading content."
+                : data
+                ? `${data.length} countries.`
+                : "An problem ocurred. Try later."}
+            </Heading>
+          </div>
           {isLoading ? (
             <CountriesListSkeleton />
           ) : data ? (
             <CountriesList data={data} />
           ) : (
-            <p>Not found!</p>
+            <Heading>An problem ocurred. Try later.</Heading>
           )}
         </main>
       </HeadingContext.Provider>
