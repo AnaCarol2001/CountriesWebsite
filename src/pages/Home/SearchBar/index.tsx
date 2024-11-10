@@ -25,9 +25,10 @@ export default function SearchBar() {
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
-    if (!isListBoxOpen && value) return seIstListBoxOpen(true);
+    setActiveLiID(() => null);
+    if (!isListBoxOpen && value) return seIstListBoxOpen(() => true);
     if (!value) {
-      seIstListBoxOpen(false);
+      seIstListBoxOpen(() => false);
       if (searchParams.get("search")) {
         searchParams.delete("search");
         setSearchParams(searchParams);
@@ -57,7 +58,7 @@ export default function SearchBar() {
       case "Enter": {
         if (!activeLiID && data && data?.length > 0) {
           setSearchParams({ search: inputValue });
-          seIstListBoxOpen(false);
+          seIstListBoxOpen(() => false);
           return;
         }
 
@@ -65,7 +66,10 @@ export default function SearchBar() {
         break;
       }
       case "Escape": {
-        if (isListBoxOpen) return seIstListBoxOpen(false);
+        if (isListBoxOpen) {
+          setActiveLiID(() => null);
+          return seIstListBoxOpen(() => false);
+        }
         handleInputChange("");
         break;
       }
@@ -83,16 +87,17 @@ export default function SearchBar() {
         value={inputValue}
         setValue={handleInputChange}
         activeLiId={activeLiID}
+        isListBoxOpen={isListBoxOpen}
       />
-      {isListBoxOpen && (
-        <ListBox
-          ref={listBoxRef}
-          activeLiID={activeLiID}
-          data={data}
-          setActiveLiID={setActiveLiID}
-          isLoading={isLoading || !searchValue}
-        />
-      )}
+
+      <ListBox
+        ref={listBoxRef}
+        activeLiID={activeLiID}
+        data={data}
+        setActiveLiID={setActiveLiID}
+        isLoading={isLoading || (!searchValue && !!inputValue)}
+        isListBoxVisible={isListBoxOpen}
+      />
     </div>
   );
 }

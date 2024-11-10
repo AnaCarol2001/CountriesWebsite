@@ -4,12 +4,14 @@ type InputSearchType = {
   value: string;
   setValue: (v: string) => void;
   activeLiId: string | null;
+  isListBoxOpen: boolean;
 };
 
 export default function InputSearch({
   value,
   setValue,
   activeLiId,
+  isListBoxOpen,
 }: InputSearchType) {
   return (
     <div className="flex bg-white dark:bg-dark-elements pl-4 py-1 rounded-md shadow-sm">
@@ -25,7 +27,7 @@ export default function InputSearch({
         aria-controls="search-results"
         aria-haspopup="listbox"
         aria-autocomplete="list"
-        aria-expanded="false"
+        aria-expanded={isListBoxOpen}
         aria-activedescendant={activeLiId ? activeLiId : ""}
         placeholder="Search for a country..."
         className="bg-transparent p-1.5 md:py-2 text-xs sm:text-sm w-full"

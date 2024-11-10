@@ -29,3 +29,4 @@ Users should be able to:
 - [How to Create Infinite Scrolling in React Using the Intersection Observer API](https://www.freecodecamp.org/news/infinite-scrolling-in-react/)
 - [useLocation - React Router Dom](https://reactrouter.com/en/main/hooks/use-location)
 - [How to write the correct type for useLoaderData()? (Typescript)](https://github.com/remix-run/react-router/discussions/9792)
+- [Accessible Loading Indicators—with No Extra Elements!](https://dockyard.com/blog/2020/03/02/accessible-loading-indicatorswith-no-extra-elements)
