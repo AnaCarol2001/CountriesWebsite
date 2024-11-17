@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 
+.page-grid-row-layout {
+  grid-template-rows: min-content 1fr min-content;
+}
+
 .tag {
   @apply bg-white dark:bg-dark-elements px-7 py-1 rounded-sm shadow-md;
 }
@@ -23,6 +27,16 @@
 
 .skeleton {
   @apply bg-slate-400 animate-pulse;
+}
+
+.animate-ping-75ms {
+  @apply animate-ping;
+  animation-delay: 250ms;
+}
+
+.animate-ping-100ms {
+  @apply animate-ping;
+  animation-delay: 500ms;
 }
 
 @tailwind utilities;

@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="mt-auto  p-4 text-center bg-white dark:bg-dark-elements">
-      <p>
+    <footer className="mt-auto p-4 text-center bg-white dark:bg-dark-elements">
+      <p className="mt-4">
         Challenge by{" "}
         <a
           href="http://"
