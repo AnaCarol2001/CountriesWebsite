@@ -20,8 +20,6 @@ export default function useToggleTheme(): {
     } else {
       document.body.classList.add("dark");
     }
-    console.log("useEffect");
-
     localStorage.setItem("theme", theme);
   }, [theme]);
 
