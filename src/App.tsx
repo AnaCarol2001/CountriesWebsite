@@ -2,23 +2,25 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { client } from "./queryClient";
 import { loader as countryLoader } from "@pages/Country/countryLoader";
 import PageLayout from "@components/ui/PageLayout";
-import Home from "@pages/Home";
-import Country from "@pages/Country";
-import Error from "@pages/Error";
+import { lazy } from "react";
+
+const Error = lazy(() => import("@pages/Error"));
 
 const router = createBrowserRouter([
   {
     element: <PageLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
-        element: <Home />,
         errorElement: <Error />,
+        lazy: () => import("@pages/Home"),
       },
       {
         path: "countries/:countryId",
-        element: <Country />,
+        errorElement: <Error />,
         loader: countryLoader(client),
+        lazy: () => import("@pages/Country"),
       },
     ],
   },

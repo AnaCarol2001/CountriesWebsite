@@ -3,11 +3,13 @@ import DetailItem from "@components/DetailItem";
 import Heading from "@components/ui/Heading";
 import Section from "@components/ui/Section";
 import { HeadingContext } from "@contexts/headingContext";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Country as CountryType } from "types";
 
-export default function Country() {
+const Error = lazy(() => import("@pages/Error"));
+
+export function Component() {
   const { country } = useLoaderData() as { country: CountryType };
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ export default function Country() {
           </div>
           <article className="grid gap-11 md:grid-cols-2 lg:items-center xl:gap-36">
             <Suspense fallback={<CountrySkeleton />}>
-              <Await resolve={country} errorElement={<p>Error</p>}>
+              <Await resolve={country} errorElement={<Error />}>
                 {(country: CountryType) => (
                   <>
                     <div className="order-2">

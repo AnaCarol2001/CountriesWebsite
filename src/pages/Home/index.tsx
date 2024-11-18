@@ -6,9 +6,14 @@ import { HeadingContext } from "@contexts/headingContext";
 import useCountries from "@pages/Home/useCountries";
 import SearchBar from "@pages/Home/SearchBar";
 import FilterByRegion from "@pages/Home/FilterByRegion";
+import { lazy } from "react";
 
-export default function Home() {
-  const { data, isLoading } = useCountries();
+const Error = lazy(() => import("@pages/Error"));
+
+export function Component() {
+  const { data, isLoading, isError } = useCountries();
+
+  if (isError) return <Error />;
 
   return (
     <>
@@ -16,7 +21,7 @@ export default function Home() {
         <main className="mx-4 md:mx-20">
           <Heading className="sr-only">Where in the world?</Heading>
 
-          <div className="w-full flex flex-col md:flex-row md:justify-between my-6  md:my-11 gap-10">
+          <div className="flex flex-col md:flex-row md:justify-between my-6  md:my-11 gap-10">
             <SearchBar />
             <FilterByRegion />
           </div>
@@ -31,10 +36,8 @@ export default function Home() {
           </div>
           {isLoading ? (
             <CountriesListSkeleton />
-          ) : data ? (
-            <CountriesList data={data} />
           ) : (
-            <Heading>An problem ocurred. Try later.</Heading>
+            data && <CountriesList data={data} />
           )}
         </main>
       </HeadingContext.Provider>
