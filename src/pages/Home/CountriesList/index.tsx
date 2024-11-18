@@ -5,8 +5,16 @@ import useInfiniteScroll from "@pages/Home/CountriesList/useInfiniteScroll";
 import { Link } from "react-router-dom";
 import { Country } from "types";
 
-export default function CountriesList({ data }: { data: Country[] }) {
-  const { displayData, lastElementRef } = useInfiniteScroll(data);
+export default function CountriesList({
+  data,
+  isLoading,
+}: {
+  data: Country[] | undefined;
+  isLoading: boolean;
+}) {
+  const { displayData, lastElementRef } = useInfiniteScroll(data, 8);
+
+  if (isLoading) return <CountriesListSkeleton />;
 
   return (
     <Section className="grid place-items-center grid-rows-auto gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-x-16 pb-6 md:pb-11 ">
@@ -18,7 +26,7 @@ export default function CountriesList({ data }: { data: Country[] }) {
           key={country.name.common}
         >
           <img
-            src={country.flags.svg}
+            src={country.flags.png}
             alt={country.flags.alt}
             width={264}
             height={160}
@@ -46,7 +54,7 @@ export default function CountriesList({ data }: { data: Country[] }) {
 }
 
 export const CountriesListSkeleton = () => {
-  const array = [0, 1, 2, 3];
+  const array = [0, 1, 2, 3, 4];
   return (
     <section className="grid place-items-center grid-rows-auto gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-x-16 pb-6 md:pb-11">
       {array.map((i) => (

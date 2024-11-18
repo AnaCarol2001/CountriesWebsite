@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-export default function useInfiniteScroll<T>(data: T[], itemsPerPage = 5) {
+export default function useInfiniteScroll<T>(
+  data: T[] | undefined,
+  itemsPerPage = 5
+) {
   const [displayData, setDisplayData] = useState<T[]>([]);
   const lastElementObserver = useRef<IntersectionObserver | null>(null);
   const location = useLocation();
@@ -34,9 +37,11 @@ export default function useInfiniteScroll<T>(data: T[], itemsPerPage = 5) {
   );
 
   useEffect(() => {
-    setDisplayData(() => []); // Reset display data if location changes
-    displayMoreItems();
-  }, [location, displayMoreItems, setDisplayData]);
+    if (data) {
+      setDisplayData(() => []); // Reset display data if location changes
+      displayMoreItems();
+    }
+  }, [location, displayMoreItems, setDisplayData, data]);
 
   return { displayData, lastElementRef };
 }
