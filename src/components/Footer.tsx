@@ -4,7 +4,7 @@ export default function Footer() {
       <p className="mt-4">
         Challenge by{" "}
         <a
-          href="http://"
+          href="https://www.frontendmentor.io/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 font-semibold"
@@ -13,7 +13,7 @@ export default function Footer() {
         </a>
         . Code by{" "}
         <a
-          href="http://"
+          href="https://github.com/AnaCarol2001"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 font-semibold"
