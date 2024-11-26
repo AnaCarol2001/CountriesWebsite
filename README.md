@@ -90,6 +90,7 @@ For the following projects, I'll focus on learning more about performance, core 
 - [Learn Debounce And Throttle In 16 Minutes](https://youtu.be/cjIswDCKgu0?si=Ye8btAAKyH7ujhFU)
 - [Combobox Pattern - ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 - [React Custom Hooks: useDebounce](https://dev.to/codebayu/react-custom-hooks-usedebounce-4il9)
+- [React-router app works in dev but not after Vercel deployment](https://stackoverflow.com/questions/64815012/react-router-app-works-in-dev-but-not-after-vercel-deployment)
 
 ## Author
 
